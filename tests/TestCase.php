@@ -11,7 +11,10 @@ abstract class TestCase extends BaseTestCase
     {
         parent::setUp();
 
-        $this->app['config']->set('bad-word', ['badword']);
+        $this->app['config']->set('bad-word', [
+            'en' => ['badword'],
+            'fr' => ['mauvais']
+        ]);
     }
 
     /**

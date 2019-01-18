@@ -30,4 +30,13 @@ class BadWordTest extends TestCase
             ['words' => 'bad_word'])->passes()
         );
     }
+
+    /** @test */
+    public function it_validates_with_bad_word_english_only()
+    {
+        $this->assertTrue($this->validator->make(
+            ['words' => 'Ç\'es-tu mauvais?'],
+            ['words' => 'bad_word:en'])->passes()
+        );
+    }
 }
