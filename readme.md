@@ -10,8 +10,29 @@ For all languages use the following
 'field_name' => 'bad_word'
 ```
 
-For a specific language, the syntax looks like this
+For a specific language(s), the syntax is as shown in the snippet below (you may select any array key found in the config)
 
 ```php
-'field_name' => 'bad_word:en' // english
+'field_name' => 'bad_word:en,fr' // english and french only
 ```
+
+## Configuration
+
+To publish the configuration file to `config/bad-word.php`
+
+```
+php artisan vendor:publish --provider="Patoui\LaravelBadWord\BadWordServiceProvider"
+```
+
+You may add your own language keys as needed
+
+```
+'dothraki' => ['Mel ase']
+
+// can be referenced in validation
+'field_name' => 'bad_word:dothraki'
+```
+
+### Contributions
+
+Any contributions are welcome!
