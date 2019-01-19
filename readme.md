@@ -2,6 +2,16 @@
 
 This package adds a "bad_word" validation rule which check for profanity and any words you want to add to check against!
 
+## Installation
+
+This package can be used in Laravel 5.0 or higher.
+
+You can install the package via composer:
+
+```
+composer require patoui/laravel-bad-word
+```
+
 ## Usage
 
 For all languages use the following
