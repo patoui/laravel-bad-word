@@ -33,7 +33,7 @@ You may add your own language keys as needed
 'field_name' => 'bad_word:dothraki'
 ```
 
-Be sure to add a validation message
+Be sure to add a validation message to your `validation.php` file
 
 ```php
 'bad_word' => 'The :attribute cannot contain bad words.',
