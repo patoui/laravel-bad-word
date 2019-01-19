@@ -6,7 +6,8 @@
         "laravel",
         "validation",
         "bad",
-        "word"
+        "word",
+        "profanity"
     ],
     "license": "MIT",
     "authors": [
@@ -18,12 +19,12 @@
         }
     ],
     "require": {
-        "php" : ">=7.0",
-        "illuminate/validation": "~5.3.0|~5.4.0|~5.5.0|~5.6.0|~5.7.0"
+        "php": ">=5.4.0",
+        "illuminate/validation": "~5.0"
     },
     "require-dev": {
-        "orchestra/testbench": "~3.4.2|~3.5.0|~3.6.0|~3.7.0",
-        "phpunit/phpunit": "^5.7|6.2|^7.0"
+        "orchestra/testbench": "~3.4",
+        "phpunit/phpunit": "~5.7"
     },
     "autoload": {
         "psr-4": {
@@ -44,6 +45,5 @@
                 "Patoui\\LaravelBadWord\\BadWordServiceProvider"
             ]
         }
-    },
-    "minimum-stability": "dev"
+    }
 }
