@@ -12,6 +12,15 @@ You can install the package via composer:
 composer require patoui/laravel-bad-word
 ```
 
+In Laravel 5.5 the service provider will automatically get registered. For older versions of the framework, add the service provider in config/app.php file:
+
+```
+'providers' => [
+    // ...
+    Patoui\LaravelBadWord\BadWordServiceProvider::class,
+];
+```
+
 ## Usage
 
 For all languages use the following
