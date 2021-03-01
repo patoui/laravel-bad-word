@@ -26,6 +26,6 @@ class BadWord
             config('bad-word') :
             Arr::only(config('bad-word'), $parameters);
 
-        return !Str::contains($value, Arr::flatten($words));
+        return !Str::contains(strtolower($value), Arr::flatten($words));
     }
 }
