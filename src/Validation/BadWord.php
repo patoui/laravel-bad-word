@@ -2,6 +2,9 @@
 
 namespace Patoui\LaravelBadWord\Validation;
 
+use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
+
 class BadWord
 {
     /**
@@ -21,8 +24,8 @@ class BadWord
 
         $words = count($parameters) === 0 ?
             config('bad-word') :
-            array_only(config('bad-word'), $parameters);
+            Arr::only(config('bad-word'), $parameters);
 
-        return !str_contains($value, array_flatten($words));
+        return !Str::contains(strtolower($value), Arr::flatten($words));
     }
 }
