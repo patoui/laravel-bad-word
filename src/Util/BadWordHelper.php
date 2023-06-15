@@ -52,16 +52,19 @@ class BadWordHelper
         if(static::hasBadWords($message)) {
             $bad_words = self::getBadWords($filter);
 
+            $replacement_string = getenv('LARAVEL_BAD_WORD_REPLACEMENT_STRING', '');
+
             //filter for strings
-            collect($bad_words->strings)->each(function($string) use (&$message) {
-                $message = str_ireplace($string, str_repeat("*", strlen($string)), $message);
+            collect($bad_words->strings)->each(function($string) use (&$message, $replacement_string) {
+                $replace = (1 === strlen($replacement_string)) ? str_repeat($replacement_string, strlen($string)) : $replacement_string ;
+                $message = str_ireplace($string, $replace, $message);
             });
 
             //filter for words
-            collect($bad_words->words)->each(function($word) use (&$message) {
+            collect($bad_words->words)->each(function($word) use (&$message, $replacement_string) {
+                $replace = (strlen($replacement_string) == 1) ? str_repeat($replacement_string, strlen($word)) : $replacement_string ;
                 //word must be preceded and followed by a space, punctuation, or the start/end of the message
-                //replace word with '****' of same length
-                $message = preg_replace('/\b'.$word.'\b/i', str_repeat("*", strlen($word)), $message);
+                $message = preg_replace('/\b'.$word.'\b/i', $replace, $message);
             });
         }
         return $message;

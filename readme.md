@@ -56,7 +56,7 @@ BadWordHelper::filterBadWords($string, ['en', 'fr']);
 
 ## Configuration
 
-You may publish the configuration file to `config/bad-word.php`
+You may publish the configuration file to `config/bad-word.php'
 
 ```
 php artisan vendor:publish --provider="Patoui\LaravelBadWord\BadWordServiceProvider"
@@ -95,6 +95,20 @@ Be sure to add a validation message to your `validation.php` file
 ```php
 'bad_word' => 'The :attribute cannot contain bad words.',
 ```
+
+### ENV Variables
+You may add an entry like one of the following to your .env file  to control text replacement for calls to BadWordHelper::filterBadWords()
+```
+//bad words are simply omitted when filtered (default behavior)
+LARAVEL_BAD_WORD_REPLACEMENT_STRING=            //'smart ass' becomes 'smart '
+
+//bad words are replaced with a string of this character the length of the bad word
+LARAVEL_BAD_WORD_REPLACEMENT_STRING=*           //'smart ass' becomes 'smart ***'
+
+//bad words are replaced with this string
+LARAVEL_BAD_WORD_REPLACEMENT_STRING=CENSORED    //'smart ass becomes 'smart CENSORED'
+```
+
 
 ## Contributions
 
