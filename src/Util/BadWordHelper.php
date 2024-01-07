@@ -23,13 +23,7 @@ class BadWordHelper
         $message = strtolower($message);
 
         //filter for strings first
-        if(app()->version() < 5.6) {
-            collect($bad_words->strings)->each(function($string) use ($message) {
-                if (str_contains($message, $string)) return true;
-            });
-        } else {
-            if (Str::contains($message, $bad_words->strings->toArray())) return true;
-        }
+        if (Str::contains($message, $bad_words->strings->toArray())) return true;
 
         //filter for words
         if(!$bad_words->words->every(function($word) use ($message) {
@@ -88,11 +82,7 @@ class BadWordHelper
             foreach($keys as $key) $bad_words->$key = collect([]);
 
             //get the filtered array
-            if(app()->version() < 5.6) {
-                $filtered_bad_words = array_only(config('bad-word'), self::$filter);
-            } else {
-                $filtered_bad_words = Arr::only(config('bad-word'), self::$filter);
-            }
+            $filtered_bad_words = Arr::only(config('bad-word'), self::$filter);
 
             //loop through the locales
             foreach($filtered_bad_words as $lang=>$data) {
@@ -103,11 +93,7 @@ class BadWordHelper
                     }
                 }
                 //handle any unkeyed words
-                if(app()->version() < 5.6) {
-                    $unkeyed = array_except($data, $keys);
-                } else {
-                    $unkeyed = Arr::except($data, $keys);
-                }
+                $unkeyed = Arr::except($data, $keys);
                 if(!empty($unkeyed)) {
                     $bad_words->words = $bad_words->words->merge($unkeyed);
                 }
